@@ -54,10 +54,7 @@ robotWorld = dilation;
 % Enter the start and end positions
 [x_Start,y_Start,x_Goal,y_Goal] = world_param(robotWorld);
 
-% Print to the screen
-sprintf(' Start Point at: %d,%d \n',x_Start,y_Start)
-sprintf(' Goal Point at: %d,%d \n',x_Goal,y_Goal)
-
+% Print to the sc
 Start_Point = [x_Start,y_Start];
 Goal_Point = [x_Goal,y_Goal];
 
