@@ -1,7 +1,0 @@
-function [ x_Start,y_Start,x_Goal,y_Goal ] = world_param( img )
-% Define the start and end goal coordinates of the world
-
-[x_Start, = 
-
-end
-

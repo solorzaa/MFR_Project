@@ -52,16 +52,14 @@ robotWorld = dilation;
 % imtool(robotWorld);
 
 % Enter the start and end positions
-[x_Start,y_Start,x_Goal,y_Goal] = world_param(robotWorld);
+[ start_pt,goal_pt,light_power,shadow_power ] = world_param(robotWorld);
 
 % Print to the screen
-sprintf(' Start Point at: %d,%d \n',x_Start,y_Start)
-sprintf(' Goal Point at: %d,%d \n',x_Goal,y_Goal)
+sprintf(' Start Point at: %d,%d \n',start_pt(1),start_pt(2))
+sprintf(' Goal Point at: %d,%d \n',goal_pt(1),goal_pt(2))
 
-Start_Point = [x_Start,y_Start];
-Goal_Point = [x_Goal,y_Goal];
-
-
+% Make the power map
+P_map = make_power_map(robotWorld,light_power,shadow_power);
 
 %% Navigate the world
 
