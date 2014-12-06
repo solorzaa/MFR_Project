@@ -3,7 +3,7 @@
 % PROJECT: Shadow Traverse Rovers
 % Authors:
 %   Ander Solorzano
-%   Ben Chaffe
+%   Ben Chaffee
 %
 % Date: Fall 2014
 %

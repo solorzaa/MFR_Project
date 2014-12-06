@@ -16,7 +16,7 @@ function [ P_out ] = robot_power_consumption( P_in,P_cap,P_regen,xPos,yPos,P_map
 
 % Check to see if the robot has more power than it can hold
 if (P_in > P_cap)
-    fprintf('Robot power BLEW UP!!!\n');
+    fprintf('ROBOT BATTERIES BLEW UP!!!\n');
 end
 
 % Check if the robot is in a light regions
@@ -30,9 +30,9 @@ if(P_map(xPos,yPos) == 1)
     P_out = P_in + P_map(xPos,yPos)*P_regen;
     end
 
-% If the robot is in a shadow region subtract 1
+% If the robot is in a shadow region add the neg. power value at that cell
 else
-    P_out = P_in - P_map(xPos,yPos);
+    P_out = P_in + P_map(xPos,yPos);
 end
 
 % Check to see if the robot is out of power
