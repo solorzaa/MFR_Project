@@ -26,8 +26,8 @@ if(P_map(xPos,yPos) == 1)
     if(P_in == P_cap)
         P_out = P_cap;
     else
-    % If it is not, increase the power by the cell value
-    P_out = P_in + P_map(xPos,yPos)*P_regen;
+        % If it is not, increase the power by the cell value
+        P_out = P_in + P_map(xPos,yPos)*P_regen;
     end
 
 % If the robot is in a shadow region add the neg. power value at that cell

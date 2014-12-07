@@ -3,7 +3,7 @@
 % PROJECT: Shadow Traverse Rovers
 % Authors:
 %   Ander Solorzano
-%   Ben Chaffe
+%   Ben Chaffee
 %
 % Date: Fall 2014
 %
@@ -11,18 +11,19 @@
 %
 % Clear all variables and screen
 %
-function main_driver_4(Map,x1,y1,xgoal,ygoal)
-y1=-y1;
-ygoal=-ygoal;
+function main_driver_4(P_map,start_pt,goal_pt)
+Map=P_map;
+x1=start_pt(1,1);
+y1=-start_pt(1,2);
+xgoal=goal_pt(1,1);
+ygoal=-goal_pt(1,2);
 clc;
-Power=10;
-P_cap=10;
+Power=20;
+P_cap=20;
 P_regen=1;
-Map(-y1,x1)=2;
-yo=-1;
-xo=-1;
+Map(x1,-y1)=2;
 ImStuck=0;
-while (x1~=xgoal || y1~=ygoal) && ImStuck==0;
+while (x1~=xgoal || y1~=ygoal) && ImStuck==0 && Power>0;
     d1=sqrt((xgoal-(x1+1))^2+(ygoal-y1)^2);
     d2=sqrt((xgoal-(x1))^2+(ygoal-(y1+1))^2);
     d3=sqrt((xgoal-(x1+1))^2+(ygoal-(y1+1))^2);
@@ -33,7 +34,7 @@ while (x1~=xgoal || y1~=ygoal) && ImStuck==0;
     d8=sqrt((xgoal-(x1+1))^2+(ygoal-(y1-1))^2);   
     PathShadow=[Map(-y1,(x1+1)),Map(-y1,(x1+1)),Map(-(y1+1),(x1+1)),Map(-y1,(x1-1)),Map(-(y1-1),x1),Map(-(y1-1),(x1-1)),Map((-y1+1),(x1-1)),Map(-(y1-1),(x1+1))];
     if PathShadow(1,1)==0 || PathShadow(1,1)==2
-       d1=inf;
+        d1=inf;
     end
     if PathShadow(1,2)==0 || PathShadow(1,2)==2
         d2=inf;
@@ -42,7 +43,7 @@ while (x1~=xgoal || y1~=ygoal) && ImStuck==0;
         d3=inf;
     end
     if PathShadow(1,4)==0 || PathShadow(1,4)==2
-       d4=inf;
+        d4=inf;
     end
     if PathShadow(1,5)==0 || PathShadow(1,5)==2
         d5=inf;
@@ -50,8 +51,8 @@ while (x1~=xgoal || y1~=ygoal) && ImStuck==0;
     if PathShadow(1,6)==0 || PathShadow(1,6)==2
         d6=inf;
     end
-    if PathShadow(1,8)==0 || PathShadow(1,7)==2
-       d7=inf;
+    if PathShadow(1,7)==0 || PathShadow(1,7)==2
+        d7=inf;
     end
     if PathShadow(1,8)==0 || PathShadow(1,8)==2
         d8=inf;
@@ -91,7 +92,8 @@ while (x1~=xgoal || y1~=ygoal) && ImStuck==0;
     ImStuck=1;
     fprintf('Im Stuck :(\n')
     end
-    Map(-y1,x1)=2;
+    Map(x1,-y1)=2;
+    p_out=robot_power_consumption(Power,P_cap,P_regen,x1,-y1,P_map);
+    Power=p_out;
 end
-Power=robot_power_consumption(Power,P_cap,P_regen,x1,-y1,Map);
 imshow(Map,[0,2]);

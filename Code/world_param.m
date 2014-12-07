@@ -11,8 +11,8 @@ function [ startPt,goalPt,light_power,shadow_power ] = world_param( img )
 % the map
 figure();
 imshow(img);
-[ x1,y1 ] = ginput(1);
-[ x2,y2 ] = ginput(1);
+[ y1,x1 ] = ginput(1);
+[ y2,x2 ] = ginput(1);
 
 x_Start = round(x1);
 y_Start = round(y1);
